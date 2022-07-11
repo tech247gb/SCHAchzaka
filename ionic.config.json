@@ -1,0 +1,8 @@
+{
+  "name": "achzaka",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

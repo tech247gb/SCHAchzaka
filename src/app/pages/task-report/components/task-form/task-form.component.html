@@ -1,0 +1,152 @@
+<div class="col-12">
+  <button type="submit" class="btn sendBtn btn-floating" (click)="onSave(treatment)">
+    <!-- <ion-icon name="send-outline" class="btnIconSend"></ion-icon> -->
+    שלח ל - SAP
+  </button>
+</div>
+<div class="pt-3">
+  <div class="fontSize text-righ">
+    {{ task.equipment }} -
+    <span class="X1" *ngIf="treatmentType == 'X1'">
+      {{ treatmentsService.getNameTreatments(treatmentType) }}
+    </span>
+    <span class="X2" *ngIf="treatmentType == 'X2'">
+      {{ treatmentsService.getNameTreatments(treatmentType) }}
+    </span>
+    <span class="X3" *ngIf="treatmentType == 'X3'">
+      {{ treatmentsService.getNameTreatments(treatmentType) }}
+    </span>
+  </div>
+</div>
+
+<div class="row gray">
+  <div class="col-12 mt-3 text-right">
+    <div class="mb-2">
+      <ion-icon name="build-outline"></ion-icon> {{ task.equipmentDescription }}
+    </div>
+    <div class="mb-2">
+      <ion-icon name="location-outline"></ion-icon> {{ task.location }}
+    </div>
+  </div>
+</div>
+<div class="line"></div>
+<div class="headerTxt"></div>
+<div class="txt1"></div>
+
+<div *ngIf="treatmentType == 'X1'">
+  <div *ngIf="checkList.length > 0">
+    <div
+      class="form-check text-right mr-4"
+      *ngFor="let cbTask of checkList; let i = index"
+    >
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="{{ i }}"
+        [(ngModel)]="cbTask.checked"
+      />
+      <label class="form-check-label checkBoxLabel" for="{{ i }}">{{
+        cbTask["description"]
+      }}</label>
+    </div>
+  </div>
+
+  <div *ngIf="checkListCommited.length > 0">
+    <div
+      class="form-check text-right mr-4"
+      *ngFor="let cbTask of checkListCommited; let i = index"
+    >
+      <!-- <input
+      type="checkbox"
+      class="form-check-input"
+      id="{{ i }}"
+      [(ngModel)]="cbTask.checked"
+    /> -->
+      <label class="form-check-label checkBoxLabelCommited" for="{{ i }}">{{
+        cbTask["description"]
+      }}</label>
+    </div>
+  </div>
+</div>
+<div class="form-group inputBox">
+  <!-- <div>
+    <div class="labelTxt">תיאור הטיפול</div>
+    <input
+      type="text"
+      class="form-control inputs"
+      id="notificationDescription"
+      [(ngModel)]="treatment.treatmentDescription"
+    />
+  </div> -->
+
+  <div class="labelTxt">פירוט נוסף</div>
+  <div>
+    <div class="form-group">
+      <textarea
+        class="form-control inputs"
+        id="exampleFormControlTextarea1"
+        rows="4"
+        [(ngModel)]="treatment.treatmentLongDescription"
+      ></textarea>
+    </div>
+  </div>
+</div>
+<p class="text-right p-1 mr-3" *ngIf="treatment.imageExists == true">
+  צורפה תמונה
+</p>
+<!-- <ion-grid>
+  <ion-row>
+  <ion-col col-6 *ngFor="let photo of photoService.photos">
+      <img [src]="photo.data" />
+      </ion-col>
+  </ion-row>
+</ion-grid> -->
+
+<!-- <div>
+    <input type="file" name="myImage" (input)="onChange($event)" />
+    <ion-fab vertical="bottom" horizontal="center" >
+      <ion-fab-button (click)="takePicture()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+   
+  </div> -->
+<div>
+  <div class="row btn3">
+    <div class="col-12 mb-4">
+      <button (click)="takePicture()" class="btn picBtn btnTxt">
+        <ion-icon name="camera-outline" class="btnIcon"></ion-icon>
+        <span class="btnTxt mr-2 fontSize30">צלם תמונה</span>
+      </button>
+    </div>
+    <div class="line"></div>
+    <div class="col-12">
+      <!-- <input
+        type="file"
+        style="display: none"
+        id="imageUpload"
+        name="myImage"
+        (input)="onChange($event)"
+      />
+      <label for="imageUpload" class="btn picBtn">בחר קובץ</label> -->
+      <button
+        type="submit"
+        class="btn btn-outline-success saveBtn mt-4"
+        (click)="onSubmit()"
+      >
+        <ion-icon name="save-outline" class="btnIcon"></ion-icon>
+        <span class="btnTxt mr-2 fontSize30">שמור</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row btn3">
+  <!-- <div class="col-6">
+    <button type="submit" class="btn cancelBtn" routerLink="/task-page">
+      ביטול
+    </button>
+  </div> -->
+  <!-- <div class="col-6">
+    <button type="submit" class="btn saveBtn" (click)="onSubmit()">שמור</button>
+  </div> -->
+</div>

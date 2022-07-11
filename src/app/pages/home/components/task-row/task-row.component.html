@@ -1,0 +1,63 @@
+<!-- <div>
+  <div
+    class="taskBox row p-3"
+    (click)="taskInfo(task.equipment, task.treatmentType)"
+  >
+    <div class="txt1 col-12 pr-3">
+      {{ task.equipment }} |
+      <span class="txt">{{ task.equipmentDescription }}</span>
+    </div>
+
+    <div class="headerNum col-8 pr-3">
+      {{ task.location }}
+    </div>
+    <div>
+      <span class="col-2 atWork" *ngIf="task.atWork">בטיפול</span>
+    </div>
+    <div class="col-6">
+      <div class="datesInfo">
+        <div [ngClass]="task.nextTreatment < today ? 'colorRed' : ' '">
+          {{ task.nextTreatment | date: "dd/MM/yyyy" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div
+  class="d-flex w-100 justify-content-between"
+  (click)="taskInfo(task.equipment, task.treatmentType)"
+>
+  <div style="width: 100%">
+    <h4 class="mb-1 text-right">
+      {{ task.equipment }}
+      <span
+        style="color: red; font-weight: bold; float: left"
+        class="fontSize20 text-left"
+        *ngIf="task.atWork && task.atWork!='false'"
+        >בטיפול
+      </span>
+    </h4>
+
+    <div class="fontSize17 text-right">
+      <ion-icon name="build-outline"></ion-icon> {{ task.equipmentDescription }}
+    </div>
+  </div>
+</div>
+<p class="mb-1 text-right fontSize17">
+  <ion-icon name="location-outline"></ion-icon> {{ task.location }}
+</p>
+<div>
+  <ion-icon
+    *ngIf="task.imageExists"
+    class="text-right fontSize20 padTop"
+    name="camera-outline"
+  ></ion-icon>
+</div>
+
+<small
+  class="fontSize14"
+  [ngClass]="task.nextTreatment < today ? 'colorRed' : ' '"
+>
+  {{ task.nextTreatment | date: "dd/MM/yyyy" }}</small
+>

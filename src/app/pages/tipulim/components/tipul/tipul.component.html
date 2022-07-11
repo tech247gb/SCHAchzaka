@@ -1,0 +1,28 @@
+<div class="d-flex w-100 justify-content-between">
+  <h5 class="mb-1 text-right">
+    {{ tipul.equipment }} - {{ tipul.equipmentDescription }} 
+  </h5>
+  <small>{{ tipul.responsible }}</small>
+</div>
+<p class="mb-1 text-right">
+  {{ tipul.submittedDate | date: "dd/MM/yyyy" }}
+</p>
+<p class="mb-1 text-right">
+  {{ treatmentsService.getNameTreatments(tipul.type) }}
+</p>
+<p>{{ tipul.treatmentLongDescription }}</p>
+<small> {{ tipul.treatmentDate | date: "dd/MM/yyyy" }}</small>
+<!-- 
+ "finish": true,
+        "sendToEcc": false,
+        "codeList": [],
+        "_id": "6087f17ab355d7fc07043ea3",
+        "equipment": "1000125",
+        "treatmentDate": "2021-04-27T21:00:00.000Z",
+        "type": "X1",
+        "__v": 0,
+        "begru": "",
+        "externalUser": "16161",
+        "responsible": "בדש רן",
+        "treatmentDescription": "טיפול פנימי - הפצה - 24 דלתות + 24 משווי גובה+ 12 לוחו",
+        "treatmentLongDescription": "" -->

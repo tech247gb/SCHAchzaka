@@ -1,0 +1,45 @@
+<div class="taskBox">
+  <!-- <div class="headerTxt" *ngIf="taskTreatments.length > 0"> -->
+  <div class="headerTxt">היסטוריית טיפולים</div>
+  <div *ngFor="let treatments of taskTreatments; index as i" class="txt">
+    <div *ngIf="treatments.treatmentLongText == ''">
+      {{
+        treatments.treatmentDate
+          | date
+            : "dd/MM/yyyy" +
+                " - " +
+                treatmentsService.getNameTreatments(treatments.type) +
+                " - " +
+                treatments.treatmentDescription
+      }}
+    </div>
+    <div *ngIf="treatments.treatmentLongText != ''">
+      <div (click)="longText(i)">
+        <span *ngIf="treatments.longText == false || !treatments.longText"
+          ><ion-icon name="caret-back-outline"></ion-icon
+        ></span>
+        <span class="txtGreen" *ngIf="treatments.longText == true"
+          ><ion-icon name="caret-down-outline"></ion-icon
+        ></span>
+        {{
+          treatments.treatmentDate
+            | date
+              : "dd/MM/yyyy" +
+                  " - " +
+                  treatmentsService.getNameTreatments(treatments.type) +
+                  " - " +
+                  treatments.treatmentDescription
+        }}
+      </div>
+      <div *ngIf="treatments.longText == true" class="txtGreen">
+        {{ treatments.treatmentLongText }} 
+      </div>
+    </div>
+
+    <!-- <div class="headerTxt" *ngIf="taskTreatments.length <= 0"> -->
+    <!-- <div class="headerTxt">
+    לא נמצאה היסטוריית טיפולים
+  </div>
+</div> -->
+  </div>
+</div>

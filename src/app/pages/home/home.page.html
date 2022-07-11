@@ -1,0 +1,265 @@
+<ion-header>
+  <app-header></app-header>
+
+  <div class="box">
+    <div>
+      <div class="colorPnimi headerTXT" *ngIf="type == 'X1'">
+        <!-- <ion-icon name="build-outline"></ion-icon> -->
+        <span class="listNum"> {{ tasksLength }} </span>
+        <span class="TXT" *ngIf="chorgim == 'true'">חורגים - </span>
+        {{ treatmentsService.getNameTreatments(type) }}
+      </div>
+      <div class="colorChitzoni headerTXT" *ngIf="type == 'X2'">
+        <!-- <ion-icon name="construct-outline"></ion-icon> -->
+        <span class="listNum"> {{ tasksLength }} </span>
+        <span class="TXT" *ngIf="chorgim == 'true'"> חורגים - </span>
+        {{ treatmentsService.getNameTreatments(type) }}
+      </div>
+      <div class="colorMehandes headerTXT" *ngIf="type == 'X3'">
+        <!-- <ion-icon name="alert-outline"></ion-icon> -->
+        <span class="listNum"> {{ tasksLength }} </span>
+        <span class="TXT" *ngIf="chorgim == 'true'"> חורגים - </span>
+        {{ treatmentsService.getNameTreatments(type) }}
+      </div>
+    </div>
+    <div class="row" *ngIf="noType">
+      <div class="col-5 form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="inlineRadioOptions"
+          id="1"
+          value="1"
+          [(ngModel)]="rbTime"
+        />
+        <label class="form-check-label pr-2" for="1">זמן</label>
+      </div>
+      <div class="col-5 form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="inlineRadioOptions"
+          id="2"
+          value="2"
+          [(ngModel)]="rbTime"
+        />
+        <label class="form-check-label pr-2" for="2">מיקום/קטגוריה</label>
+      </div>
+    </div>
+    <div class="row no-gutters text-center mt-2" *ngIf="rbTime == '1'">
+      <div class="col-3 p-1">
+        <button
+          [ngClass]="btnSelected == 1 ? 'btn btn-danger btnTime' : 'btn btn-outline-success btnTime'"
+          type="button"
+          (click)="btnSelect(1)"
+        >
+          <span>חורגים</span>
+        </button>
+      </div>
+      <div class="col-3 p-1">
+        <button
+          [ngClass]="btnSelected == 2 ? 'btn btn-success btnTime' : 'btn btn-outline-success btnTime'"
+          type="button"
+          (click)="btnSelect(2)"
+        >
+          <span>שבוע</span>
+        </button>
+      </div>
+      <div class="col-3 p-1">
+        <button
+          [ngClass]="btnSelected == 3 ? 'btn btn-success btnTime' : 'btn btn-outline-success btnTime'"
+          type="button"
+          (click)="btnSelect(3)"
+        >
+          <span> חודש</span>
+        </button>
+      </div>
+      <div class="col-3 p-1">
+        <button
+          [ngClass]="btnSelected == 4 ? 'btn btn-success btnTime' : 'btn btn-outline-success btnTime'"
+          type="button"
+          (click)="btnSelect(4)"
+        >
+          <span>בחירה</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row no-gutters text-center mt-2" *ngIf="rbTime == '2'">
+      <div class="col-6 pr-1 pl-1 inputs">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control dates"
+            [(ngModel)]="location"
+            (input)="getLocationChange($event)"
+            placeholder="מיקום"
+          />
+        </div>
+        <div class="namesTabel" *ngIf="location != '' && showListLocation">
+          <div
+            *ngFor="let location of locations"
+            class="mainContiner"
+            (click)="setLocation(location)"
+          >
+            <div class="autoName">{{ location.ktext }}</div>
+
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 pr-1 pl-1 inputs">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control dates"
+            id="Categorie"
+            [(ngModel)]="Categorie"
+            (input)="getCategorieChange($event)"
+            placeholder="קטגוריה"
+          />
+        </div>
+
+        <div class="namesTabel" *ngIf="Categorie != '' && showListCategorie">
+          <div
+            *ngFor="let Categorie of Categories"
+            class="mainContiner"
+            (click)="setCategorie(Categorie)"
+          >
+            <div class="autoName">{{ Categorie.eartx }}</div>
+
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="btnSelected == 4 && rbTime == '1'">
+      <div class="col-6">
+        <div class="form-group searchInput">
+          <label class="dates" for="exampleInputEmail1">מתאריך</label>
+          <input
+            id="search"
+            placeholder="תאריך התחלה"
+            (input)="btnSelect(4)"
+            class="form-control form-control-rounded dates"
+            [(ngModel)]="info.startDay"
+            type="date"
+          />
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group searchInput">
+          <label class="dates" for="exampleInputEmail1">עד תאריך</label>
+          <input
+            id="search"
+            placeholder="תאריך סיום"
+            (input)="btnSelect(4)"
+            class="form-control form-control-rounded dates"
+            [(ngModel)]="info.endDay"
+            type="date"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters text-center mt-2" *ngIf="noType">
+      <div class="col-4 p-1">
+        <button
+          [ngClass]="btnTypeSelected == 1 ? 'btn colorPnimi btnTime' : 'btn colorPnimiSelect btnTime'"
+          type="button"
+          (click)="btnTypeSelect(1)"
+        >
+          <span>פנימי</span>
+        </button>
+      </div>
+      <div class="col-4 p-1">
+        <button
+          [ngClass]="btnTypeSelected == 2 ? 'btn colorChitzoni btnTime' : 'btn colorChitzoniSelect btnTime'"
+          type="button"
+          (click)="btnTypeSelect(2)"
+        >
+          <span>חיצוני </span>
+        </button>
+      </div>
+      <div class="col-4 p-1">
+        <button
+          [ngClass]="btnTypeSelected == 3 ? 'btn colorMehandes btnTime' : 'btn colorMehandesSelect btnTime'"
+          type="button"
+          (click)="btnTypeSelect(3)"
+        >
+          <span>מהנדס</span>
+        </button>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="form-group searchInput col-8 mt-2 p-1">
+        <!-- <label for="exampleInputEmail1">תאריך התחלה</label> -->
+        <input
+          id="search"
+          placeholder="חפש"
+          [(ngModel)]="barcode"
+          (input)="getBarcodeChange($event)"
+          class="form-control form-control-rounded dates"
+          type="text"
+        />
+        <div class="namesTabel" *ngIf="barcode != '' && showListBarcode">
+          <div
+            *ngFor="let barcode of barcodes"
+            class="mainContiner"
+            (click)="setBarcode(barcode)"
+          >
+            <div class="autoName">{{ barcode["equipment"] }}</div>
+
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row paddingRow"> -->
+      <div class="form-group col-4 mt-2 p-1 colorBTN">
+        <button
+          class="btn btn-secondary w-100 barcodeBtn"
+          (click)="openBarCode()"
+        >
+          <ion-icon name="barcode-outline" class="btnIcon"></ion-icon>
+          <span> ברקוד</span>
+        </button>
+      </div>
+    </div>
+    <!-- <div>
+      <div class="X1 headerTXT" *ngIf="type == 'X1'">
+        <ion-icon name="build-outline"></ion-icon>
+        {{ treatmentsService.getNameTreatments(type) }}
+        <span class="TXT" *ngIf="chorgim == 'true'"> -חורגים </span>
+        <span class="listNum"> {{ tasksLength }} </span>
+      </div>
+      <div class="X2 headerTXT" *ngIf="type == 'X2'">
+        <ion-icon name="construct-outline"></ion-icon>
+        {{ treatmentsService.getNameTreatments(type) }}
+        <span class="TXT" *ngIf="chorgim == 'true'"> -חורגים </span>
+        <span class="listNum"> {{ tasksLength }} </span>
+      </div>
+      <div class="X3 headerTXT" *ngIf="type == 'X3'">
+        <ion-icon name="alert-outline"></ion-icon>
+        {{ treatmentsService.getNameTreatments(type) }}
+        <span class="TXT" *ngIf="chorgim == 'true'"> -חורגים </span>
+        <span class="listNum"> {{ tasksLength }} </span>
+      </div>
+    </div> -->
+  </div>
+
+  <hr style="margin-top: -20px" />
+</ion-header>
+<!-- <div class="headerTxt">תוכנית טיפולים</div> -->
+<ion-content>
+  <div class="container">
+    <div class="list-group">
+      <a
+        class="list-group-item list-group-item-action flex-column align-items-start"
+        *ngFor="let task of tasks"
+        (click)="taskInfo(task, task.equipment, task.treatmentType)"
+      >
+        <app-task-row [task]="task"></app-task-row>
+      </a>
+    </div>
+  </div>
+</ion-content>

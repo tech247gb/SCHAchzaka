@@ -1,0 +1,50 @@
+<!-- <ion-header>
+  <app-header></app-header>
+</ion-header> -->
+
+<ion-content>
+  <div class="logo">
+    <div align="center">
+      <img src="../../../assets/img/logo-sch-eng.png" style="width: 80%" alt="" />
+      <p class="loginText">התחברות</p>
+    </div>
+  </div>
+
+  <div class="loginBox">
+    <div class="inputs">
+      <div class="form-group">
+        <label for="userName">שם משתמש</label>
+        <input type="number" class="form-control" id="userName" [(ngModel)]="user.number" />
+      </div>
+      <div class="form-group">
+        <label for="password"> סיסמה</label>
+        <input type="number" class="form-control" id="password" [(ngModel)]="user.password" />
+      </div>
+      <button type="button" class="btn btn-dark loginBtn" (click)="onSubmit()">
+        התחבר
+      </button>
+    </div>
+  </div>
+
+  <!-- <div class="row no-gutters text-center systemBtn">
+    <div class="col-4 p-1">
+      <button [ngClass]="systemSelected == 1 ? 'btn btn-info btnTime' : 'btn btn-outline-info btnTime'" type="button"
+        (click)="systemSelect(1)">
+        <span>DEV</span>
+      </button>
+    </div>
+    <div class="col-4 p-1">
+      <button [ngClass]="systemSelected == 2 ? 'btn btn-info btnTime' : 'btn btn-outline-info btnTime'" type="button"
+        (click)="systemSelect(2)">
+        <span> QA</span>
+      </button>
+    </div> -->
+  <!-- <div class="col-12 p-1 pr-4"> -->
+  <!-- <div class="col-4 p-1">
+      <button [ngClass]="systemSelected == 3 ? 'btn btn-info btnTime' : 'btn btn-outline-info btnTime'" type="button"
+        (click)="systemSelect(3)">
+        <span>PROD</span>
+      </button>
+    </div>
+  </div> -->
+</ion-content>

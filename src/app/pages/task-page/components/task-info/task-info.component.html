@@ -1,0 +1,32 @@
+<div class="taskBox">
+  <div class="headerNum">
+    {{ "מספר ציוד: " + taskInfo.equipment }}
+  </div>
+  <div class="headerTxt">
+    {{ taskInfo.equipmentDescription }}
+  </div>
+  <hr />
+  <div class="txt">
+    {{
+      "סוג טיפול: " +
+        treatmentsService.getNameTreatments(taskInfo.treatmentType)
+    }}
+  </div>
+  <div class="txt">
+    {{ "מיקום: " + taskInfo.location }}
+  </div>
+  <div class="txt">
+    {{ "תאריך טיפול אחרון: " }}
+    {{ taskInfo.lastTreatment | date: "dd/MM/yyyy" }}
+  </div>
+  <div class="txt">
+    {{ "תאריך טיפול הבא: " }}
+    {{ taskInfo.nextTreatment | date: "dd/MM/yyyy" }}
+  </div>
+  <div class="txt">
+    {{ "אחראי: " + taskInfo.responsible }}
+  </div>
+  <div class="txt">
+    {{ "ספק: " + taskInfo.vendor }}
+  </div>
+</div>

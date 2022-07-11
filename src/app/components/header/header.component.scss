@@ -1,0 +1,32 @@
+.backBtn {
+  font-size: 22px;
+  margin-left: 4px;
+}
+
+.date {
+  margin-top: 3px;
+  text-align: center;
+}
+
+.time {
+  text-align: center;
+  margin-top: -5px;
+  font-size: 17px;
+}
+
+.headerToolbar {
+  text-align: right;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.headerName {
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+ion-toolbar {
+  // --background: rgb(61, 91, 129);
+  --background: #1f2f98;
+  color: white;
+}

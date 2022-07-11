@@ -1,0 +1,105 @@
+<ion-header>
+  <app-header></app-header>
+</ion-header>
+
+<ion-content class="colorGrey">
+  <!-- <div class="box" [routerLink]="['/home', 'true', 'true']"> -->
+  <div class="box">
+    <div class="row">
+      <div class="col-12 boxHeaderText">
+        <ion-icon class="chorgimIcon" name="alert-circle-outline"> </ion-icon>
+        <span class="chorgimText">חורגים</span>
+      </div>
+    </div>
+    <div class="row p-2 text-center">
+      <div class="col-4" (click)="corginPnimi()">
+        <div class="corgimNumber">{{ today_X1 }}</div>
+        <div class="colorPnimi">פנימי</div>
+      </div>
+      <div class="col-4 border-right border-left border-info" (click)="corginChitzoni()">
+        <div class="corgimNumber">{{ today_X2 }}</div>
+        <div class="colorChitzoni">חיצוני</div>
+        <div></div>
+      </div>
+      <div class="col-4" (click)="corginMeandes()">
+        <div class="corgimNumber">{{ today_X3 }}</div>
+        <div class="colormehandes">מהנדס</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box mt-2 mt-4">
+    <div class="row">
+      <div class="col-12 mt-2 boxHeaderText">
+        <span>חודש קרוב</span>
+      </div>
+    </div>
+    <div class="row p-2 text-center">
+      <div class="col-4" (click)="pnimiWeek()">
+        <div *ngIf="week_X1_total">
+          <span class="doNumber">{{week_X1}}</span><span class="todoNumber">/{{ week_X1_total }}</span>
+        </div>
+        <div *ngIf="!week_X1_total">
+          <span class="todoText">לא קיימים טיפולים</span>
+        </div>
+        <div class="colorPnimi">פנימי</div>
+        <div class="graphBorder mt-2" *ngIf="week_X1_total">
+          <div [style.width]="graph.g1 + '%'" *ngIf="graph.g1 < 50" class="graph colorRed"></div>
+          <div [style.width]="graph.g1 + '%'" *ngIf="graph.g1 >= 50 && graph.g1 < 90" class="graph colorOrange"></div>
+          <div [style.width]="graph.g1 + '%'" *ngIf="graph.g1 >= 90" class="graph colorGreen"></div>
+        </div>
+      </div>
+      <div class="col-4 border-right border-left border-info" (click)="chitzoniWeek()">
+        <div *ngIf="week_X2_total">
+          <span class="doNumber">{{ week_X2 }}</span><span class="todoNumber">/{{ week_X2_total }}</span>
+        </div>
+        <div *ngIf="!week_X2_total">
+          <span class="todoText">לא קיימים טיפולים</span>
+        </div>
+        <div class="colorChitzoni">חיצוני</div>
+        <div class="graphBorder mt-2" *ngIf="week_X2_total">
+          <div [style.width]="graph.g2 + '%'" *ngIf="graph.g2 < 50" class="graph colorRed"></div>
+          <div [style.width]="graph.g2 + '%'" *ngIf="graph.g2 >= 50 && graph.g2 < 90" class="graph colorOrange"></div>
+          <div [style.width]="graph.g2 + '%'" *ngIf="graph.g2 >= 90" class="graph colorGreen"></div>
+        </div>
+      </div>
+      <div class="col-4" (click)="meandesWeek()">
+        <div *ngIf="week_X3_total">
+          <span class="doNumber">{{ week_X3 }}</span><span class="todoNumber">/{{ week_X3_total }}</span>
+        </div>
+        <div *ngIf="!week_X3_total">
+          <span class="todoText">לא קיימים טיפולים</span>
+        </div>
+        <div class="colormehandes">מהנדס</div>
+        <div class="graphBorder mt-2" *ngIf="week_X3_total">
+          <div [style.width]="graph.g3 + '%'" *ngIf="graph.g3 < 50" class="graph colorRed"></div>
+          <div [style.width]="graph.g3 + '%'" *ngIf="graph.g3 >= 50 && graph.g3 < 90" class="graph colorOrange"></div>
+          <div [style.width]="graph.g3 + '%'" *ngIf="graph.g3 >= 90" class="graph colorGreen"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row buttens">
+    <div class="col-6 p-2 text-center" [routerLink]="['/home', 'false', 'false', 'search']">
+      <div class="searchBtn">
+        <ion-icon name="search-circle-outline" class="btnIcon"></ion-icon>
+        <span class="btnTxt">חיפוש</span>
+      </div>
+    </div>
+
+    <div class="col-6 p-2 text-center">
+      <div class="scanBtn" (click)="openBarCode()">
+        <ion-icon name="barcode-outline" class="btnIcon"></ion-icon>
+        <span class="btnTxt">סריקה</span>
+      </div>
+    </div>
+  </div>
+  <div class="line"></div>
+  <div class="col-12 p-3 text-center">
+    <div class="tipulim" (click)="openTipulimList()">
+      <ion-icon name="checkbox-outline" class="btnIcon"></ion-icon>
+      <span class="btnTxt">צפייה בטיפולים שבוצעו</span>
+    </div>
+  </div>
+</ion-content>
